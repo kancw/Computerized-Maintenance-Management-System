@@ -6,14 +6,11 @@ import pytest
 import sqlite3
 import sys
 import os
-from datetime import datetime
-from unittest.mock import patch, MagicMock, call
-from io import StringIO
+from unittest.mock import patch
 
 # Add the src directory to the path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
-from database import setup_database, get_connection
 import app
 
 

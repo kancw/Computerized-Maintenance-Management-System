@@ -334,13 +334,11 @@ def add_data():
                             )
                             employee_id = cursor.lastrowid
                             inserted_employee_ids.append(employee_id)
-                            print(f"DEBUG: Inserted employee with ID: {employee_id}")
                         
                         # Add corresponding contact entries
                         for i in range(len(contacts)):
                             employee_id = inserted_employee_ids[i]
                             phone, email, emergency_contact = contacts[i]
-                            print(f"DEBUG: Adding contact for employee {employee_id}")
                             cursor.execute(
                                 "INSERT INTO employee_contact (employee_id, phone, email, emergency_contact) VALUES (?, ?, ?, ?)",
                                 (employee_id, phone, email, emergency_contact)
@@ -692,7 +690,7 @@ def add_data():
                         date = get_input("Contract date (YYYY-MM-DD): ")
                         if date is None: return
                         try:
-                            contract_date = datetime.strptime(date, "%Y-%m-%d")
+                            datetime.strptime(date, "%Y-%m-%d")
                             break
                         except ValueError:
                             print("Invalid date format. Use YYYY-MM-DD.")
@@ -1974,7 +1972,6 @@ def search_activities():
             print("\n{:<4} {:<30} {:<8}".format("ID", "Chemical Name", "Hazard"))
             print()
             for row in cursor.fetchall():
-                status = "HARMFUL" if row[2] > 0 else "Safe"
                 print("{:<4} {:<30} {:<8}".format(row[0], row[1], row[2]))
                 
         elif choice == '10':
